@@ -1,0 +1,62 @@
+OBJECTIVES:
+
+1️ What is the monthly revenue vs monthly sales target, and are we meeting the target?
+                grain: 1 row = 1 month + Category
+                
+
+2️ What is the monthly revenue growth rate (MoM %) ?
+        grain: 1 row = 1 month 
+
+
+
+3️ What are the top 5 products by revenue each month?
+
+        grain: 1 row = month + 1 product(sub-Category)
+
+4️ What is the average order value (AOV) per month?
+
+        grain: 1 month
+
+        revenue mensual and number of uniques orders 
+5️ What percentage of revenue comes from the top 20% of products (Pareto analysis)?
+
+
+
+
+GRAIN AND KEYS
+
+Grain:  orders_details = 1 row 1 order line
+        orders_list = 1 row 1 order
+        sales_target = 1 row 1 monthly order + Category
+KEYS: 
+        Business keys:
+                        sales_target: compouse key (Month of Order Date,Category)
+                        orders_list: order_id
+                        orders_details: subrogate_key (order_detail_id) final Business_key (order_id + order_detail_id)
+        Foreing keys: 
+                        orders_list: orders_details.order_id → orders_list.order_id
+Tables:
+        sales_target.csv = dimension
+        orders_list.csv = this table ENRICH the fact (customer + state + city)
+        order_details.csv = MAIN FACT TABLE - metrics: revenue,profit, quantity
+
+Cardinality:
+                order_list  and orders_details = 1 TO N
+                sales_target and orders_list = 1 TO N
+                sales_target and orders_details = 1 TO N
+
+
+
+JOIN:
+
+        orders_details + order_list
+
+        expected grain: 1 order per row
+
+
+## LOGGER ##
+
+create a logger in utils.etl_logger to registrate all the steps of the pipeline.
+
+
+

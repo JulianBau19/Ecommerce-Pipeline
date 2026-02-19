@@ -1,0 +1,17 @@
+# Entornos virtuales
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Logs si los agrego en el futuro
+*.log
+
+# Archivos generados
+data/processed/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
