@@ -28,7 +28,7 @@ def main():
             datasets["orders_details"] = df
 
 
-    ## schema enforcement
+    ## schema enforcement/ type enforcement
         
         datasets = type_enforcement_function(datasets)
 
@@ -61,11 +61,9 @@ def main():
         df.to_csv(OUTPUT_PATH / "Top_5_productos_per_month_revenue.csv", index=False)
         logger.info("Top 5 products per month file saved.")
 
-
         df = (avg_order_per_month(enriched_dataset))
         df.to_csv(OUTPUT_PATH / "Average_order_per_month.csv", index=False)
         logger.info("Average order value file saved.")
-
 
         logger.info("Pipeline finished successfully")
 
