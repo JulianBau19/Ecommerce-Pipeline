@@ -10,6 +10,7 @@ from utils.etl_logger import pipeline_logger
 logger = pipeline_logger()
 
 def main():
+    
     logger.info('Pipeline started')
     try:
 ## ingestion
