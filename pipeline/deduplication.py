@@ -1,9 +1,11 @@
 from config.deduplication_rules import dedup_rules
+from utils.decorators import log_and_time_step
 from utils.etl_logger import pipeline_logger
 
 logger = pipeline_logger()
+log_step = log_and_time_step(logger)
 
-
+@log_step
 def deduplicate_function(datasets: dict) -> dict:
 
     for name, df in datasets.items():

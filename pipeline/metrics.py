@@ -1,5 +1,9 @@
 import pandas as pd
 import numpy as np
+from config.config_paths import OUTPUT_PATH
+from utils.etl_logger import pipeline_logger
+
+logger = pipeline_logger()
 
 def monthly_revenue_vs_monthly_sales_target(enriched_dataset: pd.DataFrame,sales_target: pd.DataFrame) -> pd.DataFrame:
 
@@ -88,3 +92,26 @@ def avg_order_per_month(enriched_dataset: pd.DataFrame)-> pd.DataFrame:
 
 
     return df
+
+
+def run_metrics(enriched_dataset, datasets):
+
+    df = monthly_revenue_vs_monthly_sales_target(
+        enriched_dataset,
+        datasets["sales_target"]
+    )
+
+    df.to_csv(OUTPUT_PATH / "Monthy_revenue_target_information.csv", index=False)
+    logger.info("Monthly revenue vs target file saved.")
+
+    df = monthly_revenue_growth_rate(enriched_dataset)
+    df.to_csv(OUTPUT_PATH / "Monthy_revenue_growth_rate.csv", index=False)
+    logger.info("Monthly revenue growth rate file saved.")
+
+    df = top_5_products_montly_rev(enriched_dataset)
+    df.to_csv(OUTPUT_PATH / "Top_5_productos_per_month_revenue.csv", index=False)
+    logger.info("Top 5 products per month file saved.")
+
+    df = avg_order_per_month(enriched_dataset)
+    df.to_csv(OUTPUT_PATH / "Average_order_per_month.csv", index=False)
+    logger.info("Average order value file saved.")

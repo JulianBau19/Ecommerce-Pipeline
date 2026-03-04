@@ -1,6 +1,12 @@
 import pandas as pd
 import numpy as np
+from utils.decorators import log_and_time_step
+from utils.etl_logger import pipeline_logger
 
+logger = pipeline_logger()
+log_step = log_and_time_step(logger)
+
+@log_step
 def type_enforcement_function(datasets: dict) -> dict:
 
     # orders_details

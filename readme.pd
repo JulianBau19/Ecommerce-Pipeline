@@ -1,3 +1,22 @@
+ARCHITECTURE OF THIS PIPELINE:
+
+PIPELINE
+
+Stage 1 — Data preparation
+    ingestion
+    type enforcement
+    deduplicate
+    key validation
+
+Stage 2 — Data modeling
+    build_enriched_orders
+
+Stage 3 — Analytics / metrics
+    revenue vs target
+    growth rate
+    top products
+    avg order
+
 OBJECTIVES:
 
 1️ What is the monthly revenue vs monthly sales target, and are we meeting the target?
@@ -19,8 +38,6 @@ OBJECTIVES:
 
         revenue mensual and number of uniques orders 
 5️ What percentage of revenue comes from the top 20% of products (Pareto analysis)?
-
-
 
 
 GRAIN AND KEYS
@@ -57,6 +74,5 @@ JOIN:
 ## LOGGER ##
 
 create a logger in utils.etl_logger to registrate all the steps of the pipeline.
-
 
 
